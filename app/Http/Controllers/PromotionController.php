@@ -135,7 +135,7 @@ class PromotionController extends Controller
      */
     public function destroy(Promotion $promotion)
     {
-        if (file_exists(asset('/img/promotions/' . $promotion->background))) {
+        if (file_exists(public_path('/img/promotions/' . $promotion->background))) {
             unlink(public_path('/img/promotions/' . $promotion->background));
         }
         Promotion::destroy('id', $promotion->id);

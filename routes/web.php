@@ -40,8 +40,6 @@ Route::delete('/promotion/{promotion}', [PromotionController::class, 'destroy'])
 Route::get('/partner', [PartnerController::class, 'index']);
 Route::get('/partner/create', [PartnerController::class, 'create']);
 Route::post('/partner', [PartnerController::class, 'store']);
-
-
-Route::get('/promotion/{promotion}/edit', [PromotionController::class, 'edit']);
-Route::put('/promotion/{promotion}', [HeroController::class, 'update']);
-Route::delete('/promotion/{promotion}', [HeroController::class, 'destroy']);
+Route::get('/partner/{partner}/edit', [PartnerController::class, 'edit']);
+Route::put('partner/{partner}', [PartnerController::class, 'update']);
+Route::delete('/partner/{partner}', [PartnerController::class, 'destroy']);

@@ -10,14 +10,13 @@
                 <div class="col-6">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ url('/partner/' . $partner->id) }}" method="POST"
-                                enctype="multipart/form-data">
+                            <form action="{{ url('/partner/' . $partner->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="mb-3">
                                     <label for="title" class="form-label">Title</label>
                                     <input type="text" class="form-control @error('title') is-invalid @enderror"
-                                        id="title" name="title" value="{{ $promotion->title }}">
+                                        id="title" name="title" value="{{ $partner->title }}">
                                     <div class="invalid-feedback blink">
                                         @error('title')
                                             <i class="fa-solid fa-triangle-exclamation fa-bounce"></i> {{ $message }}
@@ -28,18 +27,10 @@
                                     <label for="logo" class="form-label">Logo</label>
                                     <input type="file" class="form-control @error('logo') is-invalid @enderror"
                                         id="logo" name="logo">
+                                    <img src="{{ asset('/img/logo/' . $partner->logo) }}" alt="{{ $partner->logo }}"
+                                        width="50%">
                                     <div class="invalid-feedback blink">
                                         @error('logo')
-                                            <i class="fa-solid fa-triangle-exclamation fa-bounce"></i> {{ $message }}
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="status" class="form-label">Status</label>
-                                    <input type="text" class="form-control @error('discount') is-invalid @enderror"
-                                        id="status" name="status" value="{{ old('status') }}">
-                                    <div class="invalid-feedback blink">
-                                        @error('status')
                                             <i class="fa-solid fa-triangle-exclamation fa-bounce"></i> {{ $message }}
                                         @enderror
                                     </div>

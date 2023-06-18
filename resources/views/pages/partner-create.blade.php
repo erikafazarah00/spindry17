@@ -45,19 +45,9 @@
                                 <div class="mb-3">
                                     <label for="logo" class="form-label">Logo</label>
                                     <input type="file" class="form-control @error('logo') is-invalid @enderror"
-                                        id="logo" name="logo">
+                                        id="logo" name="logo" >
                                     <div class="invalid-feedback blink">
                                         @error('logo')
-                                            <i class="fa-solid fa-triangle-exclamation fa-bounce"></i> {{ $message }}
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="status" class="form-label">Status</label>
-                                    <input type="text" class="form-control @error('discount') is-invalid @enderror"
-                                        id="status" name="status" value="{{ old('status') }}">
-                                    <div class="invalid-feedback blink">
-                                        @error('status')
                                             <i class="fa-solid fa-triangle-exclamation fa-bounce"></i> {{ $message }}
                                         @enderror
                                     </div>

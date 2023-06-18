@@ -145,7 +145,7 @@ class HeroController extends Controller
      */
     public function destroy(Hero $hero)
     {
-        if (file_exists(asset('/img/heroes/' . $hero->background))) {
+        if (file_exists(public_path('/img/heroes/' . $hero->background))) {
             unlink(public_path('/img/heroes/' . $hero->background));
         }
         Hero::destroy('id', $hero->id);

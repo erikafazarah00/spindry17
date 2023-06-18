@@ -38,7 +38,7 @@
                                     <label for="picture" class="form-label">Picture</label>
                                     <input type="file" class="form-control @error('picture') is-invalid @enderror"
                                         id="picture" name="picture">
-                                    <img src="{{ asset('/img/heroes/' . $promotion->picture) }}"
+                                    <img src="{{ asset('/img/promotions/' . $promotion->picture) }}"
                                         alt="{{ $promotion->picture }}" width="50%">
                                     <div class="invalid-feedback blink">
                                         @error('picture')
