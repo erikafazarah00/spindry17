@@ -14,6 +14,7 @@ class Order extends Model
         'promo_id',
         'service_id',
         'weight',
+        'date',
         'total_price',
         'status'
     ];

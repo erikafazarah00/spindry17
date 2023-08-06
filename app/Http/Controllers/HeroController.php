@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Display;
 use App\Models\Hero;
+use App\Http\Requests\RequestHero;
 use Illuminate\Http\Request;
 
 class HeroController extends Controller
@@ -34,35 +36,37 @@ class HeroController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(RequestHero $request)
     {
         // return $request;
         // Hero::create($request->all());
 
-        $request->validate(
-            [
-                'title' => 'required|min:5|max:10',
-                'subtitle' => 'required|min:10|max:50',
-                'background' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-            ],
-            [
-                'title.required' => 'Kolom TITLE tidak boleh kosong om !',
-                'title.min' => 'Kolom TITLE terlalu pendek !',
-                'title.max' => 'Kolom TITLE terlalu panjang !',
-                'subtitle.required' => 'Kolom SUBTITLE tidak boleh kosong om !',
-                'subtitle.min' => 'Kolom SUBTITLE terlalu pendek !',
-                'subtitle.max' => 'Kolom SUBTITLE terlalu panjang !',
-                'background.required' => 'Kolom BACKGROUND tidak boleh kosong !',
-                'background.image' => 'Kolom BACKGROUND harus file image !',
-                'background.mimes' => 'File pada kolom BACKGROUND harus jpeg, png, gif atau svg !',
-                'background.max' => 'File pada kolom BACKGROUND terlalu besar !',
-            ]
-        );
+        // $request->validate(
+        //     [
+        //         'title' => 'required|min:5|max:10',
+        //         'subtitle' => 'required|min:10|max:50',
+        //         'background' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        //     ],
+        //     [
+        //         'title.required' => 'Kolom TITLE tidak boleh kosong om !',
+        //         'title.min' => 'Kolom TITLE terlalu pendek !',
+        //         'title.max' => 'Kolom TITLE terlalu panjang !',
+        //         'subtitle.required' => 'Kolom SUBTITLE tidak boleh kosong om !',
+        //         'subtitle.min' => 'Kolom SUBTITLE terlalu pendek !',
+        //         'subtitle.max' => 'Kolom SUBTITLE terlalu panjang !',
+        //         'background.required' => 'Kolom BACKGROUND tidak boleh kosong !',
+        //         'background.image' => 'Kolom BACKGROUND harus file image !',
+        //         'background.mimes' => 'File pada kolom BACKGROUND harus jpeg, png, gif atau svg !',
+        //         'background.max' => 'File pada kolom BACKGROUND terlalu besar !',
+        //     ]
+        // );
 
-        $background = $request->file('background');
-        $filename = time() . '-' . rand() . '-' . $background->getClientOriginalName();
-        $background->move(public_path('/img/heroes/'), $filename);
+        // $background = $request->file('background');
+        // $filename = time() . '-' . rand() . '-' . $background->getClientOriginalName();
+        // $background->move(public_path('/img/heroes/'), $filename);
 
+        // $filename = Display::upload_image($request->file('background'), 'heroes');
+        
         $status = $request->has('status') ? 'show' : 'hide';
 
         // for($i=0;$i<100;$i++)
@@ -70,7 +74,7 @@ class HeroController extends Controller
             Hero::create([
                 'title' => $request->title,
                 'subtitle' => $request->subtitle,
-                'background' => $filename,
+                'background' => Display::upload_image($request->file('background'), 'heroes'),
                 'status' => $status,
             ]);
         // }
